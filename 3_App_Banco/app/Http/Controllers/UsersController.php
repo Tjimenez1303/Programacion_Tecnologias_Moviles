@@ -48,7 +48,6 @@ class UsersController extends Controller
         $user -> email = $request -> email;
         $user -> password = $request -> password;
         $user -> save();
-        return json_encode($user);
     }
 
     /**
@@ -59,7 +58,14 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        // Muestra un solo usuario
+
+        // Buscar el usuario en la base de datos
+        $user = User::find($id);
+
+
+        //Returnamos (mostramos) los usuarios en formato JSON
+        return json_encode($user);
     }
 
     /**
@@ -82,7 +88,21 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Actualizar un usuario
+
+        // Buscar el usuario en la base de datos
+        $user = User::find($id);
+
+
+        $user -> name = $request -> name;
+        $user -> last_name = $request -> last_name;
+        $user -> document_type = $request -> document_type;
+        $user -> document_number = $request -> document_number;
+        $user -> address = $request -> address;
+        $user -> phone_number = $request -> phone_number;
+        $user -> email = $request -> email;
+        $user -> password = $request -> password;
+        $user -> save();
     }
 
     /**
@@ -93,6 +113,12 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Buscar el usuario en la base de datos
+        $user = User::find($id);
+
+        // Borramos el usuario con el id
+        $user -> delete();
+
+        return 'El elemento se ha eliminado';
     }
 }
