@@ -14,6 +14,14 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+
+            // Agrego los campos de la tabla de usuarios
+            $table->string('last_name');
+            $table->string('document_type');
+            $table->string('document_number')->unique(); //->unique() -> Para que solo pueda ser una unica cedula
+            $table->string('address');
+            $table->string('phone_number')->nullable();
+
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
