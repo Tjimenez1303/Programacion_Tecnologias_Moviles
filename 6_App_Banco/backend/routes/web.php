@@ -49,7 +49,9 @@ Route::middleware(['auth', 'role:usuario'])->group(function () {
 
 // Rutas del rol de asesor
 Route::middleware(['auth', 'role:asesor'])->group(function () {
+    // Route::get('/asesor', [AsesorController::class, 'index'])->name('asesor');
     Route::get('/asesor', [AsesorController::class, 'index'])->name('asesor');
+
 });
 
 

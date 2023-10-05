@@ -17,7 +17,7 @@ class Role
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    
+
     public function handle(Request $request, Closure $next, $roles)
     {
         // Divide la cadena de roles permitidos en un array
@@ -26,7 +26,6 @@ class Role
         // Obtiene el nombre del rol del usuario actual en minúsculas (strolower)
         $roleName = strtolower($request->user()->role->name);
 
-        dd($roleName);
 
         // Si el rol del usuario es gerente, permite el acceso a todas las rutas
         if ($roleName == 'gerente')
