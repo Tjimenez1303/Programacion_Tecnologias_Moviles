@@ -44,6 +44,7 @@ class UsersController extends Controller
         $user -> last_name = $request -> last_name;
         $user -> phone_number = $request -> phone_number;
         $user -> email = $request -> email;
+        $user -> role_id  = $request -> role_id;
         $user -> password = bcrypt($request -> password);
         $user -> save();
         // Hago un return para que vuelva al método de index de arriba para que imprima los usuarios nuevos (todos)
@@ -85,7 +86,14 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user -> name = $request -> name;
+        $user -> last_name = $request -> last_name;
+        $user -> phone_number = $request -> phone_number;
+        $user -> email = $request -> email;
+        $user -> password = bcrypt($request -> password);
+        $user -> save();
+        return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado exitosamente!');;
     }
 
     /**
@@ -102,7 +110,7 @@ class UsersController extends Controller
         $user -> visible =  false;
         $user -> save();
 
-        // Cu
+        // Vuelve y muestra los usuarios
         return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado exitosamente!');
     }
 }

@@ -16,7 +16,12 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('last_name');
+
+            // Campo para añadir un rol y que no sea obligatorio que viene de la tabla de usuarios
+            $table->unsignedBigInteger('role_id')->nullable();
+            $table->foreign('role_id')->references('id')->on('roles');
+
+            $table->string('last_name')->nullable();
             $table->string('document_type')->nullable();
             $table->string('document_number')->unique()->nullable();
             $table->string('address')->nullable();
