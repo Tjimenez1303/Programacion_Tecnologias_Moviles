@@ -30,7 +30,7 @@ Route::get('/',function(){
 });
 
 // Rutas del rol de gerente
-// Route::middleware(['auth', 'role:gerente'])->group(function () {
+Route::middleware(['auth', 'role:gerente'])->group(function () {
     Route::get('/gerente', [GerenteController::class, 'index'])->name('gerente');
     Route::get('/asesor', [AsesorController::class, 'index'])->name('asesor');
     Route::get('/usuarios', [UsersController::class, 'index'])->name('usuarios.index');
@@ -38,7 +38,7 @@ Route::get('/',function(){
     Route::get("usuarios/{id}", [UsersController::class, 'edit'])->name('usuarios.edit');
     Route::delete("usuarios/{id}", [UsersController::class, 'destroy'])->name('usuarios.destroy');
     Route::put("usuarios/{id}", [UsersController::class, 'update'])->name('usuarios.update');
-// });
+});
 
 
 // Rutas del rol de usuario
