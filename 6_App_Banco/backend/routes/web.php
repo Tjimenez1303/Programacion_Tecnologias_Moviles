@@ -55,7 +55,7 @@ Route::middleware(['auth', 'role:asesor'])->group(function () {
 });
 
 
-// Estas dos líneas se ponen al yo ejecutar los comandos de autenticación
+// Estas dos líneas se ponen al yo ejecutar los comandos de autenticación -> Ruta para el Login
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

@@ -10,6 +10,9 @@ use App\Http\Controllers\API\CreditsController;
 use App\Http\Controllers\API\LifeInsurancesController;
 use App\Http\Controllers\API\OfficesController;
 
+// Import security controller
+use App\Http\Controllers\SecurityAuthController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,13 +25,19 @@ use App\Http\Controllers\API\OfficesController;
 |
 */
 
+Route::middleware(['auth:sanctum'])->group(function () {
 
-Route::apiResource('/users', UsersController::class);
-Route::apiResource('/bank-accounts', BankAccountsController::class);
-Route::apiResource('/benefits', BenefitsController::class);
-Route::apiResource('/consultancies', ConsultanciesController::class);
-Route::apiResource('/credits', CreditsController::class);
-Route::apiResource('/life-insurances', LifeInsurancesController::class);
-Route::apiResource('/offices', OfficesController::class);
+    Route::apiResource('/bank-accounts', BankAccountsController::class);
+    Route::apiResource('/users', UsersController::class);
+    Route::apiResource('/benefits', BenefitsController::class);
+    Route::apiResource('/consultancies', ConsultanciesController::class);
+    Route::apiResource('/credits', CreditsController::class);
+    Route::apiResource('/life-insurances', LifeInsurancesController::class);
+    Route::apiResource('/offices', OfficesController::class);
+
+});
+
+// Ruta para el Login
+Route::post('/login', [SecurityAuthController::class, 'login']);
 
 
