@@ -1,4 +1,3 @@
-import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -17,6 +16,7 @@ import Perfil from './src/components/Perfil';
 import Home from './src/components/Home';
 
 const Stack = createStackNavigator();
+
 export default function App() {
   return (
     // Creamos el contenedor de navegación 
@@ -25,13 +25,13 @@ export default function App() {
       <Stack.Navigator initialRouteName="Login">
 
         {/* Creamos el stack de home */}
-        <StackActions.Screen name="Home" component={Home} />
+        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
         {/* Creamos el stack de Login */}
-        <StackActions.Screen name="Login" component={Login} />
+        <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
         {/* Creamos el stack de Logout */}
-        <StackActions.Screen name="Logout" component={Logout} />
+        <Stack.Screen name="Logout" component={Logout} options={{ headerShown: false }} />
         {/* Creamos el stack de Perfil */}
-        <StackActions.Screen name="Perfil" component={Perfil} />
+        <Stack.Screen name="Perfil" component={Perfil} options={{ headerShown: false }} />
 
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,6 +1,12 @@
-import { Alert, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native'
 import React, {useState} from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+
+// Importamos el useNavigation para poder redireccionar al usuario
+import { useNavigation } from '@react-navigation/native'
+
+// Importamos axios para poder realizar las peticiones al backend
+import axios from 'axios'
 
 export default function Login() {
     // Aquí vamos a crear los estados para el email y el password
@@ -56,9 +62,46 @@ export default function Login() {
     }
   return (
     <View style = {styles.container}>
+
+        <Text style={{fontSize: 30, marginBottom: 40}}>Iniciar sesión</Text>
+
+        <TextInput
+                style={styles.inputs}
+                placeholder="Correo electrónico"
+                onChangeText={(text) => setEmail(text)}
+                value={email} 
+        />
+
+        <TextInput
+                style={styles.inputs}
+                placeholder="Contraseña"
+                onChangeText={(text) => setPassword(text)}
+                secureTextEntry={true}
+                value={password} 
+        />
+
+        <Button title="Iniciar sesión" onPress={handleLogin} color="#000000" />
       
     </View>
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#D3B87D'
+    },
+    inputs: {
+        backgroundColor: '#fff',
+        textAlign: 'center',
+        borderWidth: 1,
+        borderColor: '#000',
+        width: 200,
+        height: 40,
+        padding: 10,
+        margin: 10,
+        borderRadius: 10,
+    }
+})
